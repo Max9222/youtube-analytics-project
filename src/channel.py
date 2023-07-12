@@ -1,9 +1,6 @@
-import json
-import os
-# необходимо установить через: pip install google-api-python-client
+
 from googleapiclient.discovery import build
 
-import isodate
 
 class Channel:
     """Класс для ютуб-канала"""
