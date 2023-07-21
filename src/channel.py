@@ -36,6 +36,23 @@ class Channel:
         self.video_count = channel['items'][0]['statistics']['videoCount']
         self.quantity_all_views = channel['items'][0]['statistics']['videoCount']
 
+    def __str__(self):
+        """Возвращает название и ссылку на канал по шаблону <название_канала> (<ссылка_на_канал>)"""
+        return f'{self.title}({self.url})'
+
+    def __add__(self, other):
+        """Реализуйте возможность складывать / вычитать / сравнивать два канала между собой."""
+
+        return f'{(self.number_of_subscribers + other.number_of_subscribers)}\n' \
+               f'{(self.number_of_subscribers > other.number_of_subscribers)}\n' \
+               f'{(self.number_of_subscribers < other.number_of_subscribers)}\n' \
+               f'{(self.number_of_subscribers <= other.number_of_subscribers)}\n' \
+               f'{(self.number_of_subscribers >= other.number_of_subscribers)}\n' \
+               f'{(self.number_of_subscribers == other.number_of_subscribers)}\n' \
+               f'{(int(self.number_of_subscribers) - int(other.number_of_subscribers))}\n' \
+
+
+
 
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
@@ -53,5 +70,6 @@ class Channel:
         """ Сохраняет в файл значения атрибутов экземпляра Channel"""
         with open(filename, 'w') as f:
             json.dump(dir(object), f, indent=2, ensure_ascii=False)
+
 
 
