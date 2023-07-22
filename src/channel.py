@@ -66,10 +66,11 @@ class Channel:
         api_key = os.getenv('YT_API_KEY')
         return build('youtube', 'v3', developerKey=api_key)
 
+
     def to_json(self, filename):
         """ Сохраняет в файл значения атрибутов экземпляра Channel"""
         with open(filename, 'w') as f:
-            json.dump(dir(object), f, indent=2, ensure_ascii=False)
+            json.dump(dir(self.get_service()), f, indent=2, ensure_ascii=False)
 
 
 
