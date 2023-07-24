@@ -41,18 +41,42 @@ class Channel:
         return f'{self.title}({self.url})'
 
     def __add__(self, other):
-        """Реализуйте возможность складывать / вычитать / сравнивать два канала между собой."""
+        """Сложение количества подписчиков двух каналов."""
 
-        return f'{(self.number_of_subscribers + other.number_of_subscribers)}\n' \
-               f'{(self.number_of_subscribers > other.number_of_subscribers)}\n' \
-               f'{(self.number_of_subscribers < other.number_of_subscribers)}\n' \
-               f'{(self.number_of_subscribers <= other.number_of_subscribers)}\n' \
-               f'{(self.number_of_subscribers >= other.number_of_subscribers)}\n' \
-               f'{(self.number_of_subscribers == other.number_of_subscribers)}\n' \
-               f'{(int(self.number_of_subscribers) - int(other.number_of_subscribers))}\n' \
+        return f'{(int(self.number_of_subscribers) + int(other.number_of_subscribers))}'
 
 
+    def __sub__(self, other):
 
+        """Разница в количестве подписчиков двух каналов."""
+        return f'{(int(self.number_of_subscribers) - int(other.number_of_subscribers))}'
+
+
+    def __gt__(self, other):
+
+        """Определяет поведение оператора больше, >."""
+        return self.number_of_subscribers > other.number_of_subscribers
+
+    def __lt__(self, other):
+
+        """Определяет поведение оператора меньше, <."""
+        return self.number_of_subscribers < other.number_of_subscribers
+
+    def __ge__(self, other):
+
+        """Определяет поведение оператора больше или равно, >=."""
+        return self.number_of_subscribers >= other.number_of_subscribers
+
+
+    def __le__(self, other):
+
+        """Определяет поведение оператора меньше или равно, <=."""
+        return self.number_of_subscribers <= other.number_of_subscribers
+
+    def __ge__(self, other):
+
+        """Определяет поведение оператора равенства, ==."""
+        return self.number_of_subscribers == other.number_of_subscribers
 
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
