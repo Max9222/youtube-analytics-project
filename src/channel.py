@@ -36,6 +36,47 @@ class Channel:
         self.video_count = channel['items'][0]['statistics']['videoCount']
         self.quantity_all_views = channel['items'][0]['statistics']['videoCount']
 
+    def __str__(self):
+        """Возвращает название и ссылку на канал по шаблону <название_канала> (<ссылка_на_канал>)"""
+        return f'{self.title}({self.url})'
+
+    def __add__(self, other):
+        """Сложение количества подписчиков двух каналов."""
+
+        return f'{(int(self.number_of_subscribers) + int(other.number_of_subscribers))}'
+
+
+    def __sub__(self, other):
+
+        """Разница в количестве подписчиков двух каналов."""
+        return f'{(int(self.number_of_subscribers) - int(other.number_of_subscribers))}'
+
+
+    def __gt__(self, other):
+
+        """Определяет поведение оператора больше, >."""
+        return self.number_of_subscribers > other.number_of_subscribers
+
+    def __lt__(self, other):
+
+        """Определяет поведение оператора меньше, <."""
+        return self.number_of_subscribers < other.number_of_subscribers
+
+    def __ge__(self, other):
+
+        """Определяет поведение оператора больше или равно, >=."""
+        return self.number_of_subscribers >= other.number_of_subscribers
+
+
+    def __le__(self, other):
+
+        """Определяет поведение оператора меньше или равно, <=."""
+        return self.number_of_subscribers <= other.number_of_subscribers
+
+    def __ge__(self, other):
+
+        """Определяет поведение оператора равенства, ==."""
+        return self.number_of_subscribers == other.number_of_subscribers
 
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
@@ -49,9 +90,11 @@ class Channel:
         api_key = os.getenv('YT_API_KEY')
         return build('youtube', 'v3', developerKey=api_key)
 
+
     def to_json(self, filename):
         """ Сохраняет в файл значения атрибутов экземпляра Channel"""
         with open(filename, 'w') as f:
-            json.dump(dir(object), f, indent=2, ensure_ascii=False)
+            json.dump(dir(self.get_service()), f, indent=2, ensure_ascii=False)
+
 
 
