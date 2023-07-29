@@ -21,7 +21,6 @@ class Video:
         - количество лайков"""
 
         self.video_id = video_id
-        video_id = self.video_id
 
         video_response = youtube.videos().list(id=video_id, part='snippet,statistics,contentDetails,topicDetails').execute()
 
