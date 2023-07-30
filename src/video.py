@@ -46,10 +46,10 @@ class PLVideo(Video):
         self.playlist_id = playlist_id
 
 
-#video1 = Video('AWX4JnAnjBE')
-#video2 = PLVideo('4fObz_qw9u4', 'PLv_zOGKKxVph_8g2Mqc3LMhj0M_BfasbC')
+video1 = Video('AWX4JnAnjBE')
+video2 = PLVideo('4fObz_qw9u4', 'PLv_zOGKKxVph_8g2Mqc3LMhj0M_BfasbC')
 
-#print1 = str(video1)
-#print2 = str(video2)
-#print(print1)
-#print(print2)
+print1 = str(video1)
+print2 = str(video2)
+print(print1)
+print(print2)
