@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 
 
+
 load_dotenv()
 
 # YT_API_KEY скопирован из гугла и вставлен в переменные окружения
@@ -20,14 +21,23 @@ class Video:
         - количество просмотров
         - количество лайков"""
 
+
         self.video_id = video_id
 
-        video_response = youtube.videos().list(id=video_id, part='snippet,statistics,contentDetails,topicDetails').execute()
+        try:
+            video_response = youtube.videos().list(id=video_id, part='snippet,statistics,contentDetails,topicDetails').execute()
+            print(video_response)
+        except :
+            self.title = None
+            self.like_count = None
+        else:
+            self.title = video_response['items'][0]['snippet']['title']
+            self.view_count = video_response['items'][0]['statistics']['viewCount']
+            self.like_count = video_response['items'][0]['statistics']['likeCount']
+            self.comment_count = video_response['items'][0]['statistics']['commentCount']
 
-        self.video_title = video_response['items'][0]['snippet']['title']
-        self.view_count = video_response['items'][0]['statistics']['viewCount']
-        self.like_count = video_response['items'][0]['statistics']['likeCount']
-        self.comment_count = video_response['items'][0]['statistics']['commentCount']
+
+
 
     def __str__(self):
         """Печатает название Видео"""
@@ -46,10 +56,11 @@ class PLVideo(Video):
         self.playlist_id = playlist_id
 
 
-video1 = Video('AWX4JnAnjBE')
-video2 = PLVideo('4fObz_qw9u4', 'PLv_zOGKKxVph_8g2Mqc3LMhj0M_BfasbC')
 
-print1 = str(video1)
-print2 = str(video2)
-print(print1)
-print(print2)
+#video1 = Video('AWX4JnAnjBE')
+#video2 = PLVideo('4fObz_qw9u4', 'PLv_zOGKKxVph_8g2Mqc3LMhj0M_BfasbC')
+
+#print1 = str(video1)
+#print2 = str(video2)
+#print(print1)
+#print(print2)
