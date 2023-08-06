@@ -26,15 +26,14 @@ class Video:
 
         try:
             video_response = youtube.videos().list(id=video_id, part='snippet,statistics,contentDetails,topicDetails').execute()
-            print(video_response)
-        except :
-            self.title = None
-            self.like_count = None
-        else:
             self.title = video_response['items'][0]['snippet']['title']
             self.view_count = video_response['items'][0]['statistics']['viewCount']
             self.like_count = video_response['items'][0]['statistics']['likeCount']
             self.comment_count = video_response['items'][0]['statistics']['commentCount']
+        except IndexError:
+            self.title = None
+            self.like_count = None
+
 
 
 
