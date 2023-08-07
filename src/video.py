@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 import os
 
 
-
 load_dotenv()
 
 # YT_API_KEY скопирован из гугла и вставлен в переменные окружения
@@ -21,7 +20,6 @@ class Video:
         - количество просмотров
         - количество лайков"""
 
-
         self.video_id = video_id
 
         try:
@@ -33,9 +31,8 @@ class Video:
         except IndexError:
             self.title = None
             self.like_count = None
-
-
-
+            self.comment_count = None
+            self.view_count = None
 
 
     def __str__(self):
@@ -53,8 +50,6 @@ class PLVideo(Video):
         - id плейлиста"""
         super().__init__(video_id)
         self.playlist_id = playlist_id
-
-
 
 #video1 = Video('AWX4JnAnjBE')
 #video2 = PLVideo('4fObz_qw9u4', 'PLv_zOGKKxVph_8g2Mqc3LMhj0M_BfasbC')
